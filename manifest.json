@@ -1,11 +1,12 @@
 {
    "name": "BackportForward",
-   "version": "1.0.0",
+   "version": "1.0.1",
    "description": "Forwarding for users running lower versions.",
+   "color": "#00007d",
    "authors": [
       {
          "name": "byeoon",
-         "id": "263689920210534400"
+         "id": "1167275288036655133"
       }
    ]
 }

@@ -69,9 +69,11 @@ const SilentTyping: Plugin = {
           "actionHandler",
           (_, args: any) => {
             if (args[0].message?.message_reference.type == "1") {
+                const resp = REST.get(`https://discord.com/api/channels/${args[0].message.message_reference.channel_id}/messages/${args[0].message.message_reference.message_id}}`);
+                console.log(resp);
                console.log(args[0]);
                 sendReply(args[0].channelId ?? "0",
-                  `This is a placeholder message. \n *https://discord.com/channels/${args[0].message.message_reference.guild_id}/${args[0].message.message_reference.channel_id}/${args[0].message.message_reference.message_id}*`,
+                  `This is a placeholder message. \n*Original: https://discord.com/channels/${args[0].message.message_reference.guild_id}/${args[0].message.message_reference.channel_id}/${args[0].message.message_reference.message_id}*`,
                   args[0].message.author.username,
                   `https://cdn.discordapp.com/avatars/${args[0].message.author.id}/${args[0].message.author.avatar}.png`
                 );
