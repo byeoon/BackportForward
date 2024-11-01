@@ -76,8 +76,7 @@ const SilentTyping: Plugin = {
           MessageUpdate,
           "actionHandler",
           (_, args: any) => {
-             
-            if (args[0].message.message_reference.type == "1") {
+            if (args[0].message?.message_reference.type == "1") {
                console.log(args[0]);
                return args[0];
                }
