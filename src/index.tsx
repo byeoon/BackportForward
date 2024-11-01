@@ -68,8 +68,10 @@ const SilentTyping: Plugin = {
           (_, args: any) => {
             if (args[0].message.message_reference.type == "1") {
                console.log(args[0]);
-                 args[0].message.content = "This is a forwarded message.";
-               return args[0];
+               args[0].messages = args[0].messages.map((n) => {
+                  n.content = "This is a forwarded message.";
+                   return n;
+                  })
                }
           }
         );
@@ -81,6 +83,7 @@ const SilentTyping: Plugin = {
                console.log(args[0]);
                args[0].message.content = "This is a forwarded message.";
                return args[0];
+               
                }
      
           }
