@@ -3,7 +3,7 @@ import { React, Messages } from 'enmity/metro/common';
 import { getByProps } from 'enmity/metro';
 import { create } from 'enmity/patcher';
 import manifest from '../manifest.json';
-
+import { REST } from "enmity/modules/common";
 
 import Settings from './components/Settings';
 
@@ -43,6 +43,7 @@ const SilentTyping: Plugin = {
 
     let attempt = 0;
     let attempts = 3;
+    
     const lateStartup = () => {
 
       try {
@@ -70,12 +71,13 @@ const SilentTyping: Plugin = {
             if (args[0].message?.message_reference.type == "1") {
                console.log(args[0]);
                 sendReply(args[0].channelId ?? "0",
-                  `This is a placeholder message. \n \n Message Link: https://discord.com/channels/${args[0].message.message_reference.guild_id}/${args[0].message.message_reference.channel_id}`,
+                  `This is a placeholder message. \n *https://discord.com/channels/${args[0].message.message_reference.guild_id}/${args[0].message.message_reference.channel_id}/${args[0].message.message_reference.message_id}*`,
                   args[0].message.author.username,
                   `https://cdn.discordapp.com/avatars/${args[0].message.author.id}/${args[0].message.author.avatar}.png`
                 );
                args[0].messages = args[0].messages.map((n) => {
-                  n.content = "This is a forwarded message. \n \n Message Link: https:";
+                  n.content = "This is a forwarded message.";
+                    args[0].message.content = "This is a forwarded message.";
                    return n;
                   })
                }
