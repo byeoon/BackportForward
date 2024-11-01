@@ -1,6 +1,6 @@
 {
    "name": "BackportForward",
-   "version": "1.0.1",
+   "version": "1.0.2",
    "description": "Forwarding for users running lower versions.",
    "color": "#00007d",
    "authors": [
