@@ -9,6 +9,7 @@ import Settings from './components/Settings';
 
 const Typing = getByProps('startTyping');
 const Patcher = create('silent-typing');
+import { sendReply } from "enmity/api/clyde";
 const MessageStore = getByProps("getMessage", "getMessages");
 const FluxDispatcher = getByProps(
    "_currentDispatchActionType",
@@ -68,6 +69,9 @@ const SilentTyping: Plugin = {
           (_, args: any) => {
             if (args[0].message.message_reference.type == "1") {
                console.log(args[0]);
+                sendReply(args[0].channelId ?? "0",
+                  "This is a placeholder message."
+                );
                args[0].messages = args[0].messages.map((n) => {
                   n.content = "This is a forwarded message.";
                    return n;
@@ -81,6 +85,9 @@ const SilentTyping: Plugin = {
           (_, args: any) => {
             if (args[0].message?.message_reference.type == "1") {
                console.log(args[0]);
+               sendReply(args[0].channelId ?? "0",
+               "This is a placeholder message."
+             );
                args[0].message.content = "This is a forwarded message.";
                return args[0];
                
@@ -94,6 +101,9 @@ const SilentTyping: Plugin = {
           (_, args: any) => {
             if (args[0].message.message_reference.type == "1") {
                console.log(args[0]);
+               sendReply(args[0].channelId ?? "0",
+               "This is a placeholder message."
+             );
                args[0].messages = args[0].messages.map((n) => {
                n.content = "This is a forwarded message.";
                 return n;
