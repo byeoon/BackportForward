@@ -1,6 +1,6 @@
 {
    "name": "backportforward",
-   "description": "Template for enmity plugins.",
+   "description": "Forwarding for users running lower versions.",
    "version": "1.0.0",
    "license": "GPL-3.0",
    "author": "byeoon",

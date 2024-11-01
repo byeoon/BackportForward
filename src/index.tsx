@@ -43,8 +43,16 @@ const BackportForward: Plugin = {
     let attempt = 0;
     let attempts = 3;
     
+    let currentChannel = "";
+    let currentMessageId = "";
+    async function callMessageContent() {
+         const resp = await REST.get(`https://discord.com/api/channels/${currentChannel}/messages/${currentMessageId}}`);
+         console.log(resp.body);
+         console.log(resp);
+         console.log(currentChannel);
+         console.log(currentMessageId);
+    }
     const lateStartup = () => {
-
       try {
         attempt++;
         console.log(
@@ -64,9 +72,9 @@ const BackportForward: Plugin = {
           "actionHandler",
           (_, args: any) => {
             if (args[0].message?.message_reference.type == "1") {
-                const resp = REST.get(`https://discord.com/api/channels/${args[0].message.message_reference.channel_id}/messages/${args[0].message.message_reference.message_id}}`);
-                console.log(resp.body);
-                console.log(resp);
+               currentChannel == args[0].message.message_reference.channel_id;
+               currentMessageId == args[0].message.message_reference.message_id;
+               callMessageContent();
                console.log(args[0]);
                 sendReply(args[0].channelId ?? "0",
                   `This is a placeholder message. \n*Original: https://discord.com/channels/${args[0].message.message_reference.guild_id}/${args[0].message.message_reference.channel_id}/${args[0].message.message_reference.message_id}*`,
