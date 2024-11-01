@@ -1,10 +1,10 @@
 {
-   "name": "SilentTyping",
+   "name": "BackportForward",
    "version": "1.0.0",
-   "description": "Silences your typing indicator.",
+   "description": "Forwarding for users running lower versions.",
    "authors": [
       {
-         "name": "eternal",
+         "name": "byeoon",
          "id": "263689920210534400"
       }
    ]
