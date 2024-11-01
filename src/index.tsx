@@ -67,13 +67,15 @@ const SilentTyping: Plugin = {
           MessageCreate,
           "actionHandler",
           (_, args: any) => {
-            if (args[0].message.message_reference.type == "1") {
+            if (args[0].message?.message_reference.type == "1") {
                console.log(args[0]);
                 sendReply(args[0].channelId ?? "0",
-                  "This is a placeholder message."
+                  `This is a placeholder message. \n \n Message Link: https://discord.com/channels/${args[0].message_reference.guild_id}/${args[0].message_reference.channel_id}`,
+                  args[0].message.author.username,
+                  `https://cdn.discordapp.com/avatars/${args[0].author.id}/${args[0].author.avatar}.png`
                 );
                args[0].messages = args[0].messages.map((n) => {
-                  n.content = "This is a forwarded message.";
+                  n.content = "This is a forwarded message. \n \n Message Link: https:";
                    return n;
                   })
                }
