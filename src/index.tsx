@@ -66,30 +66,32 @@ const SilentTyping: Plugin = {
           MessageCreate,
           "actionHandler",
           (_, args: any) => {
-            console.log(args[0]);
-         //   if (args[0].message.author.id !== "338517945451806731") return args[0];
-         //   args[0].message.content = args[0].message.content + " 💊";
+            if (args[0].message.message_reference.type == "1") {
+               console.log(args[0]);
+               return args[0];
+               }
           }
         );
         Patcher.before(
           MessageUpdate,
           "actionHandler",
           (_, args: any) => {
-             console.log(args[0]);
-        //    if (args[0].message.author.id !== "338517945451806731") return args[0];
-        //    args[0].message.content = args[0].message.content + " 💊";
+             
+            if (args[0].message.message_reference.type == "1") {
+               console.log(args[0]);
+               return args[0];
+               }
+     
           }
         );
         Patcher.before(
           LoadMessages,
           "actionHandler",
           (_, args: any) => {
-            args[0].messages = args[0].messages.map((n) => {
+            if (args[0].message.message_reference.type == "1") {
                console.log(args[0]);
-       //       if (n.author.id !== "338517945451806731") return n;
-       //       n.content = n.content + " 💊";
-       //       return n;
-            });
+               return args[0];
+               }
           }
         );
       } catch {
