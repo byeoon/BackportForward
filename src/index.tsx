@@ -46,7 +46,6 @@ const BackportForward: Plugin = {
     let currentChannel = "";
     let currentMessageId = "";
     async function callMessageContent() {
-      console.log("it did not call the function because fuck you thats why");
          const resp = await REST.get(`https://discord.com/api/channels/${currentChannel}/messages/${currentMessageId}}`);
          console.log(resp.body);
          console.log(resp);
@@ -71,8 +70,8 @@ const BackportForward: Plugin = {
           "actionHandler",
           (_, args: any) => {
             if (args[0].message?.message_reference.type == "1") {
-               currentChannel == args[0].message.message_reference.channel_id;
-               currentMessageId == args[0].message.message_reference.message_id;
+               currentChannel = args[0].message.message_reference.channel_id;
+               currentMessageId = args[0].message.message_reference.message_id;
                console.log(currentChannel);
                console.log(currentMessageId);
                callMessageContent();
